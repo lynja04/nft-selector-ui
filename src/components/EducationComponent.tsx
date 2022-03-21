@@ -91,7 +91,9 @@ const EducationComponent = () => {
       <Button
         fullWidth
         sx={{ mt: 3, mb: 2, backgroundColor: "black" }}
-        onClick={() => {}}
+        onClick={() => {
+          window.location.href = "http://localhost:3000/selection";
+        }}
       >
         Ready to move on?
       </Button>

@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import { useAuth } from "../contexts/AuthContext";
 
 type NavigationProps = {
-  children: ReactElement<any, string>;
+  children: ReactElement<any, string> | Array<ReactElement<any, string>>;
 };
 
 const Navigation: React.FC<NavigationProps> = ({ children }) => {

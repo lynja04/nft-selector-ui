@@ -40,12 +40,13 @@ const SignUpComponent: React.FC = () => {
     //   knowledgeLevel: knowledgeLevel,
     // });
     LoginApi.login(loginDTO)
-      .then(() => {
+      .then((response: any) => {
         setAlertOpen(true);
         setLoggedIn(true);
         setUserInfo({
           userName: loginDTO.userName ? loginDTO.userName : "",
           knowledgeLevel: knowledgeLevel,
+          userId: response.data,
         });
       })
       .catch(() => {});

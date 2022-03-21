@@ -8,16 +8,16 @@ import React, {
 } from "react";
 
 type AuthContextType = {
-  userInfo: { userName: string; knowledgeLevel: string };
+  userInfo: { userName: string; knowledgeLevel: string; userId: number };
   setUserInfo: Dispatch<
-    SetStateAction<{ userName: string; knowledgeLevel: string }>
+    SetStateAction<{ userName: string; knowledgeLevel: string; userId: number }>
   >;
   loggedIn: boolean;
   setLoggedIn: Dispatch<SetStateAction<boolean>>;
 };
 
 const AuthContext = createContext<AuthContextType>({
-  userInfo: { userName: "", knowledgeLevel: "" },
+  userInfo: { userName: "", knowledgeLevel: "", userId: -1 },
   setUserInfo: () => {},
   loggedIn: false,
   setLoggedIn: () => {},
@@ -33,6 +33,7 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   const [userInfo, setUserInfo] = useState({
     userName: "",
     knowledgeLevel: "",
+    userId: -1,
   });
   const [loggedIn, setLoggedIn] = useState(false);
 

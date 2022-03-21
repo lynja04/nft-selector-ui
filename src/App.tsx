@@ -2,10 +2,9 @@ import React, { ReactElement } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useAuth } from "./contexts/AuthContext";
-import SignUpContainer from "./containers/SignUpContainer";
-import EducationContainer from "./containers/EducationContainer";
 import SelectorSectionContainer from "./containers/SelectorSectionContainer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingContainer from "./containers/LandingContainer";
 
 const App: React.FC = () => {
   const darkTheme = createTheme({
@@ -14,23 +13,16 @@ const App: React.FC = () => {
     },
   });
 
-  const { loggedIn, userInfo } = useAuth();
-
-  const getLandingComponent = (): ReactElement => {
-    switch (userInfo?.knowledgeLevel) {
-      case "beginner": {
-        return <EducationContainer />;
-      }
-      default:
-        return <SelectorSectionContainer />;
-    }
-  };
-
   return (
     <ThemeProvider theme={darkTheme}>
-      <Navigation>
-        {loggedIn ? getLandingComponent() : <SignUpContainer />}
-      </Navigation>
+      <BrowserRouter>
+        <Navigation>
+          <Routes>
+            <Route path="/" element={<LandingContainer />} />
+            <Route path="/selection" element={<SelectorSectionContainer />} />
+          </Routes>
+        </Navigation>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
