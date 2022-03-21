@@ -1,7 +1,8 @@
 import React from "react";
+import EducationComponent from "../components/EducationComponent";
 
 const EducationContainer = () => {
-  return <div></div>;
+  return <EducationComponent></EducationComponent>;
 };
 
 export default EducationContainer;

@@ -13,16 +13,6 @@ type NavigationProps = {
 const Navigation: React.FC<NavigationProps> = ({ children }) => {
   const { loggedIn, userInfo } = useAuth();
 
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -40,7 +30,7 @@ const Navigation: React.FC<NavigationProps> = ({ children }) => {
             NFT Select
           </Typography>
           <Button color="inherit">
-            {loggedIn && userInfo ? userInfo.email : ""}
+            {loggedIn && userInfo ? "Hi, " + userInfo.userName : ""}
           </Button>
         </Toolbar>
       </AppBar>

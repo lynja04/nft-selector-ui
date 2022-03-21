@@ -30,15 +30,23 @@ const SignUpComponent: React.FC = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const loginDTO = {
-      email: data.get("email")?.toString(),
+      userName: data.get("email")?.toString(),
       password: data.get("password")?.toString(),
       knowledgeLevel: knowledgeLevel,
     };
+    // setLoggedIn(true);
+    // setUserInfo({
+    //   email: loginDTO.email ? loginDTO.email : "",
+    //   knowledgeLevel: knowledgeLevel,
+    // });
     LoginApi.login(loginDTO)
       .then(() => {
         setAlertOpen(true);
         setLoggedIn(true);
-        setUserInfo({ email: loginDTO.email ? loginDTO.email : "" });
+        setUserInfo({
+          userName: loginDTO.userName ? loginDTO.userName : "",
+          knowledgeLevel: knowledgeLevel,
+        });
       })
       .catch(() => {});
   };
