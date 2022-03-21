@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Navigation from "./components/Navigation";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useAuth } from "./contexts/AuthContext";
+import SignUpContainer from "./containers/SignUpContainer";
 
-function App() {
+const App: React.FC = () => {
+  const darkTheme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
+  const { loggedIn } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <Navigation>
+        {loggedIn ? <div>Welcome!</div> : <SignUpContainer />}
+      </Navigation>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
