@@ -22,7 +22,7 @@ import {
 import { useAuth } from "../contexts/AuthContext";
 
 const SignUpComponent: React.FC = () => {
-  const { setLoggedIn, setUserInfo } = useAuth();
+  const { setLoggedIn, updateUserInfo } = useAuth();
   const [openAlert, setAlertOpen] = useState(false);
   const [knowledgeLevel, setKnowledgeLevel] = useState("beginner");
 
@@ -43,11 +43,11 @@ const SignUpComponent: React.FC = () => {
       .then((response: any) => {
         setAlertOpen(true);
         setLoggedIn(true);
-        setUserInfo({
-          userName: loginDTO.userName ? loginDTO.userName : "",
-          knowledgeLevel: knowledgeLevel,
-          userId: response.data,
-        });
+        updateUserInfo(
+          loginDTO.userName ? loginDTO.userName : "",
+          response.data,
+          knowledgeLevel
+        );
       })
       .catch(() => {});
   };

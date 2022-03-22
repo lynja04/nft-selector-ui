@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
